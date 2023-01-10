@@ -12,11 +12,10 @@ public class BoardVo {
 //	"READ_DATE"	DATE		NOT NULL,
 //	"REG_DATE"	DATE		NOT NULL,
 //	"PHRASE"	VARCHAR(200)		NULL,
-//	"RP_READ_CHECK"	NUMBER(1)		NOT NULL,
-//	"WRITE_DATE"	DATE		NOT NULL
+//	"RP_READ_CHECK"	NUMBER(1)		NOT NULL
 	
 	private int rpno;
-	private String uid;
+	private String mid;
 	private String rpcontent;
 	private String rptitle;
 	private String rpauthor;
@@ -24,13 +23,12 @@ public class BoardVo {
 	private Date regdate;
 	private String phrase;
 	private int readchk;
-	private Date writedate;
 	
 	@Override
 	public String toString() {
-		return "BoardVo [rpno = " + rpno + ", uid = "+uid+", rpcontent = "+rpcontent+", rptitle = "+rptitle
+		return "BoardVo [rpno = " + rpno + ", mid = "+mid+", rpcontent = "+rpcontent+", rptitle = "+rptitle
 				+", rpauthor = "+rpauthor+ ", readdate ="+readdate+", regdate = "+regdate+", phrase = "+phrase
-				+", readchk = "+readchk+", writedate = "+writedate;
+				+", readchk = "+readchk;
 	}
 
 	public int getRpno() {
@@ -41,12 +39,12 @@ public class BoardVo {
 		this.rpno = rpno;
 	}
 
-	public String getUid() {
-		return uid;
+	public String getMid() {
+		return mid;
 	}
 
-	public void setUid(String uid) {
-		this.uid = uid;
+	public void setMid(String mid) {
+		this.mid = mid;
 	}
 
 	public String getRpcontent() {
@@ -104,14 +102,5 @@ public class BoardVo {
 	public void setReadchk(int readchk) {
 		this.readchk = readchk;
 	}
-
-	public Date getWritedate() {
-		return writedate;
-	}
-
-	public void setWritedate(Date writedate) {
-		this.writedate = writedate;
-	}
-	
 	
 }

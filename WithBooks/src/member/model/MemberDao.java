@@ -9,48 +9,51 @@ import common.jdbc.JdbcTemplate;
 
 public class MemberDao {
 	//insert 등록
-	public int insert(Connection conn, Members vo) {
+	public int insert(Connection conn, MemberVo vo) {
 		int result = 0;
 		return result;
 	}
 	//update 수정
-	public int update(Connection conn, Members vo, String uid) {
+	public int update(Connection conn, MemberVo vo, String mid) {
 		int result = 0;
 		return result;
 	}
 	//delete 삭제
-	public int delete(Connection conn, String uid) {
+	public int delete(Connection conn, String mid) {
 		int result=0;
 		return result;
 	}
 	//selectList 목록조회
-	public List<Members> selectList(Connection conn){
-		List<Members> volist = null;
+	public List<MemberVo> selectList(Connection conn){
+		List<MemberVo> volist = null;
 		
 		return volist;
 	}
 	//selectOne 상세조회
-	public Members selectOne(Connection conn, String uid) {
-		Members vo = null;
+	public MemberVo selectOne(Connection conn, String mid) {
+		MemberVo vo = null;
 		return vo;
 	}
 	//selectOne - login 상제조회
-	public Members login(Connection conn, String uid, String upw) {
-		Members vo = null;
-		String query = "SELECT UID, EMAIL, JOINDATE FROM MEMBER WHERE UID=? AND UPW=?";
+	public MemberVo login(Connection conn, String mid, String upw) {
+		System.out.println("###0"+mid);
+		System.out.println("###0"+upw);
+		MemberVo vo = null;
+		String query = "SELECT MID, EMAIL,JOIN_DATE FROM MEMBER WHERE MID=? AND UPW=?";
 		PreparedStatement pstmt=null;
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, uid);
+			pstmt.setString(1, mid);
 			pstmt.setString(2, upw);
 			rs = pstmt.executeQuery();
+			System.out.println("###1");
 			if(rs.next()) {
-				vo = new Members();
-				vo.setUid(rs.getString("uid"));
-				vo.setEmail(rs.getString("email"));
-				vo.setUpw(rs.getString("upw"));
-				vo.setJoindate(rs.getDate("joindate"));
+				System.out.println("###2");
+				vo = new MemberVo();
+				vo.setMid(rs.getString("MID"));
+				vo.setEmail(rs.getString("EMAIL"));
+				vo.setJoindate(rs.getDate("JOIN_DATE"));
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -58,6 +61,7 @@ public class MemberDao {
 			JdbcTemplate.close(rs);
 			JdbcTemplate.close(pstmt);
 		}
+		System.out.println("###3"+vo);
 		return vo;
 	}
 	
